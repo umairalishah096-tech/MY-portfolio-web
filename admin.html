@@ -1,0 +1,294 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel — Umair Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+
+<!-- LOGIN SCREEN -->
+<div class="login-overlay" id="loginOverlay">
+  <div class="login-box">
+    <div class="login-logo">
+      <svg viewBox="0 0 48 48" fill="none" width="44" height="44">
+        <path d="M6 9 L6 30 Q6 39 15 39 Q24 39 24 30 L24 9" stroke="#00F5A0" stroke-width="3" stroke-linecap="round" fill="none"/>
+        <path d="M29 9 L42 39 M42 9 L29 39" stroke="#00D9FF" stroke-width="3" stroke-linecap="round" fill="none"/>
+      </svg>
+      <span>Portfolio <span class="accent">CMS</span></span>
+    </div>
+    <h2>Welcome Back</h2>
+    <p class="login-sub">Enter credentials to manage your portfolio</p>
+    <form id="loginForm" novalidate>
+      <div class="form-group">
+        <label for="loginUser">Username</label>
+        <input type="text" id="loginUser" placeholder="admin" autocomplete="username" />
+      </div>
+      <div class="form-group">
+        <label for="loginPass">Password</label>
+        <div class="pass-wrap">
+          <input type="password" id="loginPass" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" autocomplete="current-password" />
+          <button type="button" class="pass-toggle" id="passToggle" aria-label="Show password">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
+      </div>
+      <p class="login-error" id="loginError" hidden>Invalid credentials. Try again.</p>
+      <button type="submit" class="btn-primary btn-full">Login</button>
+    </form>
+    <p class="login-hint">Default: admin / admin123</p>
+  </div>
+</div>
+
+<!-- ADMIN LAYOUT -->
+<div class="admin-layout" id="adminLayout" hidden>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar__brand">
+      <svg viewBox="0 0 48 48" fill="none" width="32" height="32">
+        <path d="M6 9 L6 30 Q6 39 15 39 Q24 39 24 30 L24 9" stroke="#00F5A0" stroke-width="3" stroke-linecap="round" fill="none"/>
+        <path d="M29 9 L42 39 M42 9 L29 39" stroke="#00D9FF" stroke-width="3" stroke-linecap="round" fill="none"/>
+      </svg>
+      <span>Portfolio <span class="accent">CMS</span></span>
+    </div>
+    <nav class="sidebar__nav">
+      <button class="sidebar__link active" data-section="projects">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+        Projects
+      </button>
+      <button class="sidebar__link" data-section="skills">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        Skills
+      </button>
+      <button class="sidebar__link" data-section="services">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        Services
+      </button>
+      <button class="sidebar__link" data-section="journey">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+        Journey
+      </button>
+      <button class="sidebar__link" data-section="about">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        About
+      </button>
+    </nav>
+    <div class="sidebar__footer">
+      <a href="index.html" target="_blank" class="sidebar__preview">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        View Portfolio
+      </a>
+      <button class="sidebar__logout" id="logoutBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Logout
+      </button>
+    </div>
+  </aside>
+
+  <main class="admin-main">
+    <header class="admin-topbar">
+      <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="topbar-title" id="topbarTitle">Projects</div>
+      <div class="topbar-right">
+        <span class="topbar-badge"><span class="badge-dot"></span> Logged in as <strong>admin</strong></span>
+      </div>
+    </header>
+
+    <div class="toast" id="toast" aria-live="polite"></div>
+
+    <!-- PROJECTS -->
+    <section class="panel-section active" id="section-projects">
+      <div class="panel-header">
+        <div><h1 class="panel-title">Projects</h1><p class="panel-sub">Manage your portfolio projects</p></div>
+        <button class="btn-primary" id="addProjectBtn">+ Add Project</button>
+      </div>
+      <div class="items-list" id="projectsList"></div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="panel-section" id="section-skills">
+      <div class="panel-header">
+        <div><h1 class="panel-title">Skills</h1><p class="panel-sub">Manage your technical skills</p></div>
+        <button class="btn-primary" id="addSkillBtn">+ Add Skill</button>
+      </div>
+      <div class="items-list" id="skillsList"></div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="panel-section" id="section-services">
+      <div class="panel-header">
+        <div><h1 class="panel-title">Services</h1><p class="panel-sub">Manage your service offerings</p></div>
+        <button class="btn-primary" id="addServiceBtn">+ Add Service</button>
+      </div>
+      <div class="items-list" id="servicesList"></div>
+    </section>
+
+    <!-- JOURNEY -->
+    <section class="panel-section" id="section-journey">
+      <div class="panel-header">
+        <div><h1 class="panel-title">Journey</h1><p class="panel-sub">Manage your timeline events</p></div>
+        <button class="btn-primary" id="addJourneyBtn">+ Add Event</button>
+      </div>
+      <div class="items-list" id="journeyList"></div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="panel-section" id="section-about">
+      <div class="panel-header">
+        <div><h1 class="panel-title">About</h1><p class="panel-sub">Update your personal information</p></div>
+      </div>
+      <div class="about-form-wrap">
+        <form id="aboutForm" class="about-form">
+          <div class="form-row">
+            <div class="form-group"><label>Full Name</label><input type="text" id="aName" placeholder="Umair Ali Shah" /></div>
+            <div class="form-group"><label>Tagline / Role</label><input type="text" id="aTagline" placeholder="Full Stack MERN Developer" /></div>
+          </div>
+          <div class="form-group"><label>Bio (Paragraph 1)</label><textarea id="aBio1" rows="3" placeholder="Your story..."></textarea></div>
+          <div class="form-group"><label>Bio (Paragraph 2)</label><textarea id="aBio2" rows="3" placeholder="More about you..."></textarea></div>
+          <div class="form-row">
+            <div class="form-group"><label>Location</label><input type="text" id="aLocation" placeholder="Swabi, Pakistan" /></div>
+            <div class="form-group"><label>Email</label><input type="email" id="aEmail" placeholder="umairalishah096@gmail.com" /></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>WhatsApp Number</label><input type="text" id="aWhatsapp" placeholder="+92 344 1193348" /></div>
+            <div class="form-group"><label>GitHub URL</label><input type="url" id="aGithub" placeholder="https://github.com/..." /></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>LinkedIn URL</label><input type="url" id="aLinkedin" placeholder="https://linkedin.com/in/..." /></div>
+            <div class="form-group"><label>Availability Status</label>
+              <select id="aAvailability">
+                <option value="available">Available for Work</option>
+                <option value="busy">Not Available</option>
+                <option value="partial">Limited Availability</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row stats-row">
+            <div class="form-group"><label>Projects Count</label><input type="number" id="aStat1" min="0" placeholder="12" /></div>
+            <div class="form-group"><label>Years of Learning</label><input type="number" id="aStat2" min="0" placeholder="3" /></div>
+            <div class="form-group"><label>International Concepts</label><input type="number" id="aStat3" min="0" placeholder="2" /></div>
+            <div class="form-group"><label>Client Satisfaction %</label><input type="number" id="aStat4" min="0" max="100" placeholder="100" /></div>
+          </div>
+          <div class="form-actions"><button type="submit" class="btn-primary">Save About Info</button></div>
+        </form>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- PROJECT MODAL -->
+<div class="modal-overlay" id="projectModal" hidden>
+  <div class="modal-box">
+    <div class="modal-header"><h3 id="projectModalTitle">Add Project</h3><button class="modal-close" data-close="projectModal">x</button></div>
+    <form id="projectForm">
+      <input type="hidden" id="projectId" />
+      <div class="form-row">
+        <div class="form-group"><label>Project Title *</label><input type="text" id="pTitle" placeholder="Watan Tobacco ERP" required /></div>
+        <div class="form-group"><label>Type / Label</label><input type="text" id="pLabel" placeholder="Full Stack ERP System" /></div>
+      </div>
+      <div class="form-group"><label>Description *</label><textarea id="pDesc" rows="3" placeholder="Describe the project..." required></textarea></div>
+      <div class="form-row">
+        <div class="form-group"><label>GitHub URL</label><input type="url" id="pGithub" placeholder="https://github.com/..." /></div>
+        <div class="form-group"><label>Live Demo URL</label><input type="url" id="pDemo" placeholder="https://..." /></div>
+      </div>
+      <div class="form-group"><label>Technologies (comma separated)</label><input type="text" id="pTags" placeholder="React, Node.js, MongoDB" /></div>
+      <div class="form-row">
+        <div class="form-group"><label>Featured?</label>
+          <select id="pFeatured"><option value="false">No - Show in Grid</option><option value="true">Yes - Featured</option></select>
+        </div>
+        <div class="form-group"><label>Status</label>
+          <select id="pStatus"><option value="completed">Completed</option><option value="inprogress">In Progress</option><option value="planned">Planned</option></select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-ghost" data-close="projectModal">Cancel</button>
+        <button type="submit" class="btn-primary">Save Project</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- SKILL MODAL -->
+<div class="modal-overlay" id="skillModal" hidden>
+  <div class="modal-box modal-box--sm">
+    <div class="modal-header"><h3 id="skillModalTitle">Add Skill</h3><button class="modal-close" data-close="skillModal">x</button></div>
+    <form id="skillForm">
+      <input type="hidden" id="skillId" />
+      <div class="form-group"><label>Skill Name *</label><input type="text" id="sName" placeholder="React.js" required /></div>
+      <div class="form-row">
+        <div class="form-group"><label>Proficiency % *</label><input type="number" id="sPercent" min="1" max="100" placeholder="85" required /></div>
+        <div class="form-group"><label>Category</label>
+          <select id="sCategory"><option value="frontend">Frontend</option><option value="backend">Backend</option><option value="tools">Tools &amp; Analytics</option></select>
+        </div>
+      </div>
+      <div class="form-group"><label>Devicon Class (optional)</label><input type="text" id="sIcon" placeholder="devicon-react-original" /></div>
+      <div class="modal-footer">
+        <button type="button" class="btn-ghost" data-close="skillModal">Cancel</button>
+        <button type="submit" class="btn-primary">Save Skill</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- SERVICE MODAL -->
+<div class="modal-overlay" id="serviceModal" hidden>
+  <div class="modal-box">
+    <div class="modal-header"><h3 id="serviceModalTitle">Add Service</h3><button class="modal-close" data-close="serviceModal">x</button></div>
+    <form id="serviceForm">
+      <input type="hidden" id="serviceId" />
+      <div class="form-group"><label>Service Title *</label><input type="text" id="svTitle" placeholder="Full Stack Web Development" required /></div>
+      <div class="form-group"><label>Description *</label><textarea id="svDesc" rows="3" placeholder="Describe what you offer..." required></textarea></div>
+      <div class="form-group"><label>Features (one per line)</label><textarea id="svFeatures" rows="4" placeholder="React SPA apps&#10;RESTful API design&#10;Authentication"></textarea></div>
+      <div class="modal-footer">
+        <button type="button" class="btn-ghost" data-close="serviceModal">Cancel</button>
+        <button type="submit" class="btn-primary">Save Service</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- JOURNEY MODAL -->
+<div class="modal-overlay" id="journeyModal" hidden>
+  <div class="modal-box">
+    <div class="modal-header"><h3 id="journeyModalTitle">Add Journey Event</h3><button class="modal-close" data-close="journeyModal">x</button></div>
+    <form id="journeyForm">
+      <input type="hidden" id="journeyId" />
+      <div class="form-row">
+        <div class="form-group"><label>Year / Label *</label><input type="text" id="jYear" placeholder="2025 or NOW" required /></div>
+        <div class="form-group"><label>Title *</label><input type="text" id="jTitle" placeholder="The Beginning" required /></div>
+      </div>
+      <div class="form-group"><label>Description *</label><textarea id="jDesc" rows="3" placeholder="What happened..." required></textarea></div>
+      <div class="form-group"><label>Tags (comma separated)</label><input type="text" id="jTags" placeholder="HTML, CSS, JavaScript" /></div>
+      <div class="form-group"><label>Position</label>
+        <select id="jSide"><option value="left">Left</option><option value="right">Right</option></select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-ghost" data-close="journeyModal">Cancel</button>
+        <button type="submit" class="btn-primary">Save Event</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- DELETE CONFIRM -->
+<div class="modal-overlay" id="deleteModal" hidden>
+  <div class="modal-box modal-box--sm modal-box--danger">
+    <div class="modal-header"><h3>Confirm Delete</h3><button class="modal-close" data-close="deleteModal">x</button></div>
+    <p class="delete-msg" id="deleteMsg">Are you sure? This cannot be undone.</p>
+    <div class="modal-footer">
+      <button type="button" class="btn-ghost" data-close="deleteModal">Cancel</button>
+      <button type="button" class="btn-danger" id="confirmDeleteBtn">Delete</button>
+    </div>
+  </div>
+</div>
+
+<script src="admin.js"></script>
+</body>
+</html>

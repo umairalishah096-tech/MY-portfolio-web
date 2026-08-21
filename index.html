@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Umair Ali Shah — Full Stack MERN Developer, Power BI Analyst & UI/UX Architect from Pakistan. Building cutting-edge web applications for international clients." />
+  <meta name="keywords" content="Umair Ali Shah, MERN Developer, Power BI Analyst, Full Stack Developer, React Developer, Node.js, MongoDB, UI/UX, Pakistan" />
+  <meta name="author" content="Umair Ali Shah" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://umairalishah.dev/" />
+  <meta property="og:title" content="Umair Ali Shah — Full Stack MERN Developer" />
+  <meta property="og:description" content="Building cutting-edge web applications & data systems for international clients." />
+  <meta property="og:image" content="assets/images/og-image.jpg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Umair Ali Shah — Full Stack MERN Developer" />
+  <meta name="twitter:description" content="Building cutting-edge web applications & data systems for international clients." />
+  <meta name="twitter:image" content="assets/images/og-image.jpg" />
+
+  <title>Umair Ali Shah — Full Stack MERN Developer</title>
+
+  <!-- Preload critical fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- Devicons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Structured Data / JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Umair Ali Shah",
+    "jobTitle": "Full Stack MERN Developer",
+    "url": "https://umairalishah.dev",
+    "email": "umairalishah@email.com",
+    "address": { "@type": "PostalAddress", "addressLocality": "Swabi", "addressCountry": "PK" },
+    "knowsAbout": ["React", "Node.js", "MongoDB", "Express", "Power BI", "UI/UX Design"]
+  }
+  </script>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════
+     LOADING SCREEN
+════════════════════════════════════════════════════ -->
+<div class="loader" id="loader" aria-hidden="true" role="status">
+  <div class="loader__inner">
+    <div class="loader__logo">
+      <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="UAS logo">
+        <path class="loader__path" d="M10 15 L10 50 Q10 65 25 65 Q40 65 40 50 L40 15" stroke="#00F5A0" stroke-width="4" stroke-linecap="round" fill="none"/>
+        <path class="loader__path" d="M48 15 L70 65 M70 15 L48 65" stroke="#00D9FF" stroke-width="4" stroke-linecap="round" fill="none"/>
+      </svg>
+    </div>
+    <div class="loader__bar">
+      <div class="loader__fill" id="loaderFill"></div>
+    </div>
+    <span class="loader__percent" id="loaderPercent">0%</span>
+  </div>
+  <div class="loader__panel loader__panel--left"></div>
+  <div class="loader__panel loader__panel--right"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     CURSOR
+════════════════════════════════════════════════════ -->
+<div class="cursor__dot" id="cursorDot" aria-hidden="true"></div>
+<div class="cursor__ring" id="cursorRing" aria-hidden="true"></div>
+
+<!-- ═══════════════════════════════════════════════════
+     SCROLL PROGRESS
+════════════════════════════════════════════════════ -->
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+<!-- ═══════════════════════════════════════════════════
+     NAVIGATION
+════════════════════════════════════════════════════ -->
+<header class="nav" id="nav" role="banner">
+  <nav class="nav__container container" aria-label="Primary navigation">
+    <a href="#home" class="nav__logo" aria-label="Umair Ali Shah home">
+      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" width="36" height="36">
+        <path d="M6 9 L6 30 Q6 39 15 39 Q24 39 24 30 L24 9" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none"/>
+        <path d="M29 9 L42 39 M42 9 L29 39" stroke="var(--neon-cyan)" stroke-width="3" stroke-linecap="round" fill="none"/>
+      </svg>
+      <span class="nav__logo-text">Umair<span class="nav__logo-accent">.</span></span>
+    </a>
+
+    <ul class="nav__links" role="list">
+      <li><a href="#about"    class="nav__link" data-nav="about">About</a></li>
+      <li><a href="#skills"   class="nav__link" data-nav="skills">Skills</a></li>
+      <li><a href="#projects" class="nav__link" data-nav="projects">Projects</a></li>
+      <li><a href="#services" class="nav__link" data-nav="services">Services</a></li>
+      <li><a href="#journey"  class="nav__link" data-nav="journey">Journey</a></li>
+      <li><a href="#contact"  class="nav__link" data-nav="contact">Contact</a></li>
+    </ul>
+
+    <div class="nav__actions">
+      <button class="nav__theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode" title="Toggle theme">
+        <svg class="theme-icon theme-icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="theme-icon theme-icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+      <a href="resume/umair-ali-shah-cv.pdf" download class="btn btn--ghost btn--sm nav__cta magnetic" aria-label="Download Umair's CV">
+        <span>Download CV</span>
+      </a>
+    </div>
+
+    <button class="nav__hamburger" id="navToggle" aria-label="Open mobile menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="nav__mobile" id="mobileMenu" aria-label="Mobile navigation" hidden>
+    <ul role="list">
+      <li><a href="#about"    class="nav__mobile-link">About</a></li>
+      <li><a href="#skills"   class="nav__mobile-link">Skills</a></li>
+      <li><a href="#projects" class="nav__mobile-link">Projects</a></li>
+      <li><a href="#services" class="nav__mobile-link">Services</a></li>
+      <li><a href="#journey"  class="nav__mobile-link">Journey</a></li>
+      <li><a href="#contact"  class="nav__mobile-link">Contact</a></li>
+    </ul>
+    <a href="resume/umair-ali-shah-cv.pdf" download class="btn btn--primary btn--full">Download CV</a>
+  </div>
+</header>
+
+<main id="main-content">
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 1 — HERO
+════════════════════════════════════════════════════ -->
+<section class="hero" id="home" aria-label="Hero — Introduction">
+  <canvas class="hero__canvas" id="heroCanvas" aria-hidden="true"></canvas>
+  <div class="hero__glow" aria-hidden="true"></div>
+
+  <div class="hero__container container">
+    <!-- LEFT: Text Content -->
+    <div class="hero__content">
+      <div class="hero__badge" aria-label="Availability status">
+        <span class="hero__badge-dot" aria-hidden="true"></span>
+        <span>Available for Work</span>
+      </div>
+
+      <h1 class="hero__name" id="heroName" aria-label="Umair Ali Shah">
+        <span class="hero__name-scramble" data-text="Umair Ali Shah">Umair Ali Shah</span>
+      </h1>
+
+      <div class="hero__typewriter" aria-live="polite" aria-label="Current role">
+        <span class="hero__typewriter-prefix">I'm a&nbsp;</span>
+        <span class="hero__typewriter-text" id="typewriterText"></span>
+        <span class="hero__typewriter-cursor" aria-hidden="true">|</span>
+      </div>
+
+      <p class="hero__bio">
+        BS Computer Science graduate from Swabi, Pakistan — engineering high-performance web applications,
+        data systems, and intuitive interfaces for clients worldwide. I ship products that are fast,
+        beautiful, and built to last.
+      </p>
+
+      <div class="hero__ctas">
+        <a href="resume/umair-ali-shah-cv.pdf" download class="btn btn--ghost magnetic" aria-label="Download Umair's CV">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span>Download CV</span>
+        </a>
+        <a href="#contact" class="btn btn--primary magnetic" aria-label="Hire Umair">
+          <span>Hire Me</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="#projects" class="btn btn--text" aria-label="View Umair's projects">
+          <span>View Projects</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+      <div class="hero__socials" aria-label="Social links">
+        <a href="https://github.com/umairalishah096-tech/umairalishah096-tech" target="_blank" rel="noopener noreferrer" class="hero__social magnetic" aria-label="GitHub profile">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/umair-ali-shah-b10a74240/" target="_blank" rel="noopener noreferrer" class="hero__social magnetic" aria-label="LinkedIn profile">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="mailto:umairalishah096@gmail.com" class="hero__social magnetic" aria-label="Send email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </a>
+        <a href="https://wa.me/923441193348" target="_blank" rel="noopener noreferrer" class="hero__social magnetic" aria-label="WhatsApp contact">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- RIGHT: Profile Image -->
+    <div class="hero__visual">
+      <div class="hero__image-frame" aria-label="Profile photo of Umair Ali Shah">
+        <div class="hero__image-ring hero__image-ring--outer" aria-hidden="true"></div>
+        <div class="hero__image-ring hero__image-ring--inner" aria-hidden="true"></div>
+        <div class="hero__image-hex">
+          <img src="assets/images/profile.jpg" alt="Umair Ali Shah — Full Stack MERN Developer" class="hero__image" width="340" height="380" loading="eager" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <!-- Fallback avatar shown if image not found -->
+          <div class="hero__image-fallback" style="display:none; width:100%; height:100%; align-items:center; justify-content:center; background:linear-gradient(135deg,var(--surface-3),var(--surface-2)); color:var(--neon-green);">
+            <svg viewBox="0 0 100 100" width="80" height="80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="50" cy="35" r="20" stroke="currentColor" stroke-width="3"/>
+              <path d="M10 90 C10 65 90 65 90 90" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+        <div class="hero__image-badge" aria-hidden="true">
+          <span class="hero__image-badge-dot"></span>
+          <span>Available for Work ✓</span>
+        </div>
+      </div>
+
+      <!-- Floating tech pills -->
+      <div class="hero__pill hero__pill--react" aria-hidden="true">
+        <i class="devicon-react-original"></i> React
+      </div>
+      <div class="hero__pill hero__pill--node" aria-hidden="true">
+        <i class="devicon-nodejs-plain"></i> Node.js
+      </div>
+      <div class="hero__pill hero__pill--mongo" aria-hidden="true">
+        <i class="devicon-mongodb-plain"></i> MongoDB
+      </div>
+    </div>
+  </div>
+
+  <a href="#about" class="hero__scroll-hint" aria-label="Scroll to about section">
+    <span>Scroll</span>
+    <div class="hero__scroll-line" aria-hidden="true"></div>
+  </a>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 2 — ABOUT
+════════════════════════════════════════════════════ -->
+<section class="about section" id="about" aria-label="About Umair Ali Shah">
+  <div class="container">
+    <div class="section__header">
+      <span class="section__tag">Get to know me</span>
+      <h2 class="section__title">About <span class="text-gradient">Me</span></h2>
+      <p class="section__subtitle">The person behind the code</p>
+    </div>
+
+    <div class="about__grid">
+      <!-- LEFT: Story + Stats -->
+      <div class="about__left">
+        <div class="about__story">
+          <p class="about__text">
+            I'm Umair Ali Shah — a BS Computer Science graduate from Swabi, Pakistan, driven by the intersection
+            of clean code, thoughtful design, and business impact. I specialize in the MERN stack, building
+            full-stack applications that don't just work — they convert, scale, and impress.
+          </p>
+          <p class="about__text">
+            Beyond development, I work with data. As a Power BI Analyst, I transform raw business data into
+            visual narratives that help organizations make smarter decisions. I believe a great developer
+            isn't just technical — they understand the business problem.
+          </p>
+          <p class="about__text">
+            My goal: land remote opportunities with international clients and build products that reach
+            millions. Every project I ship is a step toward that mission.
+          </p>
+        </div>
+
+        <!-- Stats grid -->
+        <div class="about__stats" role="list" aria-label="Career statistics">
+          <div class="about__stat" role="listitem">
+            <span class="about__stat-number" data-count="12">0</span>
+            <span class="about__stat-suffix">+</span>
+            <span class="about__stat-label">Projects Completed</span>
+          </div>
+          <div class="about__stat" role="listitem">
+            <span class="about__stat-number" data-count="3">0</span>
+            <span class="about__stat-suffix">+</span>
+            <span class="about__stat-label">Years of Learning</span>
+          </div>
+          <div class="about__stat" role="listitem">
+            <span class="about__stat-number" data-count="2">0</span>
+            <span class="about__stat-suffix">+</span>
+            <span class="about__stat-label">International Concepts</span>
+          </div>
+          <div class="about__stat" role="listitem">
+            <span class="about__stat-number" data-count="100">0</span>
+            <span class="about__stat-suffix">%</span>
+            <span class="about__stat-label">Client Satisfaction</span>
+          </div>
+        </div>
+
+        <!-- Quick info cards -->
+        <div class="about__info">
+          <div class="about__info-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Swabi, Khyber Pakhtunkhwa, Pakistan</span>
+          </div>
+          <div class="about__info-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            <span>BS Computer Science</span>
+          </div>
+          <div class="about__info-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Open to Remote · Freelance · Internship</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Terminal Bio -->
+      <div class="about__right">
+        <div class="terminal" aria-label="Terminal-style biography" role="region">
+          <div class="terminal__bar" aria-hidden="true">
+            <span class="terminal__dot terminal__dot--red"></span>
+            <span class="terminal__dot terminal__dot--yellow"></span>
+            <span class="terminal__dot terminal__dot--green"></span>
+            <span class="terminal__title">umair@portfolio:~</span>
+          </div>
+          <div class="terminal__body" id="terminalBody" aria-live="polite">
+            <div class="terminal__line">
+              <span class="terminal__prompt">$</span>
+              <span class="terminal__cmd" data-cmd="whoami">whoami</span>
+            </div>
+            <div class="terminal__output">umair-ali-shah</div>
+            <div class="terminal__line">
+              <span class="terminal__prompt">$</span>
+              <span class="terminal__cmd" data-cmd="cat about.txt">cat about.txt</span>
+            </div>
+            <div class="terminal__output terminal__output--multi">
+              <span>BS CS Graduate. MERN Developer. Power BI Analyst.</span>
+              <span>Building scalable apps &amp; beautiful interfaces.</span>
+              <span>Bridging design, data, and development.</span>
+            </div>
+            <div class="terminal__line">
+              <span class="terminal__prompt">$</span>
+              <span class="terminal__cmd" data-cmd="cat goals.txt">cat goals.txt</span>
+            </div>
+            <div class="terminal__output terminal__output--multi">
+              <span class="terminal__neon">Remote Work · International Clients</span>
+              <span class="terminal__neon">Product Development · Open Source</span>
+            </div>
+            <div class="terminal__line">
+              <span class="terminal__prompt">$</span>
+              <span class="terminal__cmd" data-cmd="cat stack.txt">cat stack.txt</span>
+            </div>
+            <div class="terminal__output terminal__output--multi">
+              <span><span class="terminal__key">frontend:</span> React · Tailwind · GSAP</span>
+              <span><span class="terminal__key">backend: </span> Node · Express · REST API</span>
+              <span><span class="terminal__key">data:    </span> MongoDB · MySQL · Power BI</span>
+              <span><span class="terminal__key">cloud:   </span> AWS · Azure AI (Learning)</span>
+            </div>
+            <div class="terminal__line terminal__line--active">
+              <span class="terminal__prompt">$</span>
+              <span class="terminal__cursor" aria-hidden="true">█</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 3 — SKILLS
+════════════════════════════════════════════════════ -->
+<section class="skills section" id="skills" aria-label="Technical Skills">
+  <div class="container">
+    <div class="section__header">
+      <span class="section__tag">What I work with</span>
+      <h2 class="section__title">Technical <span class="text-gradient">Skills</span></h2>
+      <p class="section__subtitle">Technologies I use to ship production-grade products</p>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div class="skills__tabs" role="tablist" aria-label="Filter skills by category">
+      <button class="skills__tab skills__tab--active" role="tab" aria-selected="true" data-filter="all">All</button>
+      <button class="skills__tab" role="tab" aria-selected="false" data-filter="frontend">Frontend</button>
+      <button class="skills__tab" role="tab" aria-selected="false" data-filter="backend">Backend</button>
+      <button class="skills__tab" role="tab" aria-selected="false" data-filter="tools">Tools & Analytics</button>
+    </div>
+
+    <!-- Skills Grid -->
+    <div class="skills__grid" id="skillsGrid" role="tabpanel">
+
+      <!-- FRONTEND -->
+      <div class="skill-card" data-category="frontend" role="article">
+        <div class="skill-card__icon"><i class="devicon-html5-plain" aria-hidden="true"></i></div>
+        <div class="skill-card__info">
+          <div class="skill-card__header">
+            <span class="skill-card__name">HTML5</span>
+            <span class="skill-card__percent">95%</span>
+          </div>
+          <div class="skill-card__bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" aria-label="HTML5 proficiency 95%">
+            <div class="skill-card__fill" data-width="95"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-card" data-category="frontend" role="article">
+        <div class="skill-card__icon"><i class="devicon-css3-plain" aria-hidden="true"></i></div>
+        <div class="skill-card__info">
+          <div class="skill-card__header">
+            <span class="skill-card__name">CSS3</span>
+            <span class="skill-card__percent">92%</span>
+          </div>
+          <div class="skill-card__bar" role="progressbar" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100" aria-label="CSS3 proficiency 92%">
+            <div class="skill-card__fill" data-width="92"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-card" data-category="frontend" role="article">
+        <div class="skill-card__icon"><i class="devicon-javascript-plain" aria-hidden="true"></i></div>
+        <div class="skill-card__info">
+          <div class="skill-card__header">
+            <span class="skill-card__name">JavaScript</span>
+            <span class="skill-card__percent">88%</span>
+          </div>
+          <div class="skill-card__bar" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" aria-label="JavaScript proficiency 88%">
+            <div class="skill-card__fill" data-width="88"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-card" data-category="frontend" role="article">
+        <div class="skill-card__icon"><i class="devicon-react-original" aria-hidden="true"></i></div>
+        <div class="skill-card__info">
+          <div class="skill-card__header">
+            <span class="skill-card__name">React.js</span>
+            <span class="skill-card__percent">85%</span>
+          </div>
+          <div class="skill-card__bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" aria-label="React.js proficiency 85%">
+            <div class="skill-card__fill" data-width="85"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-card" data-category="frontend" role="article">
+        <div class="skill-card__icon"><i class="devicon-tailwindcss-plain" aria-hidden="true"></i></div>
+        <div class="skill-card__info">
+          <div class="skill-card__header">
+            <span class="skill-card__name">Tailwind CSS</span>
+            <span class="skill-card__percent">90%</span>
+          </div>
+          <div class="skill-card__bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" aria-label="Tailwind CSS proficiency 90%">
+            <div class="skill-card__fill" data-width="90"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-card" data-category="frontend" role="article">
+        <div class="skill-card__icon"><i class="devicon-bootstrap-plain" aria-hidden="true"></i></div>
+        <div class="skill-card__info">
+          <div class="skill-card__header">
+            <span class="skill-card__name">Bootstrap</span>
+            <span class="skill-card__percent">88%</span>
+          </div>
+          <div class="skill-card__bar" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" aria-label="Bootstrap proficiency 88%">
+            <div class="skill-card__fill" data-width="88"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BACKEND -->
+      <div class="skill-card" data-category="backend" role="article">
+        <div class="skill-card__icon"><i class="devicon-nodejs-plain" aria-hidden="true"></i></div>
+        <div class="skill-card__info">
+          <div class="skill-card__header">
+            <span class="skill-card__name">Node.js</span>
+            <span class="skill-card__percent">82%</span>
+          </div>
+          <div class="skill-card__bar" role="progressbar" aria-valuenow="82" aria-valuemin="0" aria-valuemax="100" aria-label="Node.js proficiency 82%">
+            <div class="skill-card__fill" data-width="82"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-card" data-category="backend" role="article">
+        <div class="skill-card__icon"><i class="devicon-express-original" aria-hidden="true"></i></div>
+        <div class="skill-card__info">
+          <div class="skill-card__header">
+            <span class="skill-card__name">Express.js</span>
+            <span class="skill-card__percent">80%</span>
+          </div>
+          <div class="skill-card__bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" aria-label="Express.js proficiency 80%">
+            <div class="skill-card__fill" data-width="80"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-card" data-category="backend" role="article">
+        <div class="skill-card__icon"><i class="devicon-mongodb-plain" aria-hidden="true"></i></div>
+        <div class="skill-card__info">
+          <div class="skill-card__header">
+            <span class="skill-card__name">MongoDB</span>
+            <span class="skill-card__percent">80%</span>
+          </div>
+          <div class="skill-card__bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" aria-label="MongoDB proficiency 80%">
+            <div class="skill-card__fill" data-width="80"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-card" data-category="backend" role="article">
+        <div class="skill-card__icon"><i class="devicon-mysql-plain" aria-hidden="true"></i></div>
+        <div class="skill-card__info">
+          <div class="skill-card__header">
+            <span class="skill-card__name">MySQL</span>
+            <span class="skill-card__percent">75%</span>
+          </div>
+          <div class="skill-card__bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" aria-label="MySQL proficiency 75%">
+            <div class="skill-card__fill" data-width="75"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TOOLS -->
+      <div class="skill-card" data-category="tools" role="article">
+        <div class="skill-card__icon"><i class="devicon-git-plain" aria-hidden="true"></i></div>
+        <div class="skill-card__info">
+          <div class="skill-card__header">
+            <span class="skill-card__name">Git & GitHub</span>
+            <span class="skill-card__percent">85%</span>
+          </div>
+          <div class="skill-card__bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" aria-label="Git proficiency 85%">
+            <div class="skill-card__fill" data-width="85"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-card" data-category="tools" role="article">
+        <div class="skill-card__icon"><i class="devicon-figma-plain" aria-hidden="true"></i></div>
+        <div class="skill-card__info">
+          <div class="skill-card__header">
+            <span class="skill-card__name">Figma</span>
+            <span class="skill-card__percent">78%</span>
+          </div>
+          <div class="skill-card__bar" role="progressbar" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100" aria-label="Figma proficiency 78%">
+            <div class="skill-card__fill" data-width="78"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-card" data-category="tools" role="article">
+        <div class="skill-card__icon">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <div class="skill-card__info">
+          <div class="skill-card__header">
+            <span class="skill-card__name">Power BI</span>
+            <span class="skill-card__percent">83%</span>
+          </div>
+          <div class="skill-card__bar" role="progressbar" aria-valuenow="83" aria-valuemin="0" aria-valuemax="100" aria-label="Power BI proficiency 83%">
+            <div class="skill-card__fill" data-width="83"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-card" data-category="tools" role="article">
+        <div class="skill-card__icon"><i class="devicon-wordpress-plain" aria-hidden="true"></i></div>
+        <div class="skill-card__info">
+          <div class="skill-card__header">
+            <span class="skill-card__name">WordPress</span>
+            <span class="skill-card__percent">80%</span>
+          </div>
+          <div class="skill-card__bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" aria-label="WordPress proficiency 80%">
+            <div class="skill-card__fill" data-width="80"></div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /skills__grid -->
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 4 — PROJECTS
+════════════════════════════════════════════════════ -->
+<section class="projects section" id="projects" aria-label="Portfolio Projects">
+  <div class="container">
+    <div class="section__header">
+      <span class="section__tag">What I've shipped</span>
+      <h2 class="section__title">Featured <span class="text-gradient">Projects</span></h2>
+      <p class="section__subtitle">Production-ready applications built with real-world complexity</p>
+    </div>
+
+    <!-- Featured: Watan Tobacco ERP -->
+    <article class="project-featured" aria-label="Watan Tobacco ERP project">
+      <div class="project-featured__badge">Featured Project</div>
+      <div class="project-featured__inner tilt-card">
+        <div class="project-featured__image">
+          <div class="project-featured__mockup" aria-hidden="true">
+            <div class="mockup-browser">
+              <div class="mockup-browser__bar"><span></span><span></span><span></span></div>
+              <div class="mockup-browser__screen mockup-browser__screen--erp">
+                <div class="erp-ui">
+                  <div class="erp-ui__sidebar"></div>
+                  <div class="erp-ui__main">
+                    <div class="erp-ui__header"></div>
+                    <div class="erp-ui__chart"></div>
+                    <div class="erp-ui__rows">
+                      <div></div><div></div><div></div><div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="project-featured__content">
+          <p class="project-featured__label">Full Stack ERP System</p>
+          <h3 class="project-featured__title">Watan Tobacco ERP</h3>
+          <p class="project-featured__desc">
+            A production-grade Enterprise Resource Planning system built for a tobacco distribution company in Pakistan.
+            Features real-time inventory management, sales tracking, supplier relations, financial reporting, and
+            role-based access control — replacing a fully manual paper-based workflow.
+          </p>
+          <div class="project-featured__meta">
+            <div class="project__tags" aria-label="Technologies used">
+              <span class="tag">React</span>
+              <span class="tag">Node.js</span>
+              <span class="tag">Express</span>
+              <span class="tag">MongoDB</span>
+              <span class="tag">JWT Auth</span>
+              <span class="tag">Power BI</span>
+            </div>
+            <div class="project__impact">
+              <div class="project__impact-stat"><span>40%</span><small>Faster reporting</small></div>
+              <div class="project__impact-stat"><span>100%</span><small>Digital workflow</small></div>
+              <div class="project__impact-stat"><span>5+</span><small>User roles</small></div>
+            </div>
+          </div>
+          <div class="project__actions">
+            <a href="https://github.com/umairalishah/watan-tobacco-erp" target="_blank" rel="noopener noreferrer" class="btn btn--ghost btn--sm magnetic" aria-label="View Watan Tobacco ERP on GitHub">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub
+            </a>
+            <button class="btn btn--primary btn--sm magnetic" data-modal="erp" aria-label="View Watan Tobacco ERP case study">
+              Case Study <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Featured: Hotel Landing Page -->
+    <article class="project-featured project-featured--reverse" aria-label="Hotel Resort landing page project">
+      <div class="project-featured__inner tilt-card">
+        <div class="project-featured__image">
+          <div class="project-featured__mockup" aria-hidden="true">
+            <div class="mockup-browser">
+              <div class="mockup-browser__bar"><span></span><span></span><span></span></div>
+              <div class="mockup-browser__screen mockup-browser__screen--hotel">
+                <div class="hotel-ui">
+                  <div class="hotel-ui__hero"></div>
+                  <div class="hotel-ui__cards">
+                    <div></div><div></div><div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="project-featured__content">
+          <p class="project-featured__label">Frontend Development</p>
+          <h3 class="project-featured__title">Luxury Hotel & Resort Landing Page</h3>
+          <p class="project-featured__desc">
+            A cinematic, conversion-focused landing page for a luxury hotel brand. Built with custom CSS animations,
+            parallax scrolling, smooth scroll behavior, and a fully responsive layout. Features room showcase,
+            amenities grid, testimonials, and an integrated booking inquiry form.
+          </p>
+          <div class="project-featured__meta">
+            <div class="project__tags" aria-label="Technologies used">
+              <span class="tag">HTML5</span>
+              <span class="tag">CSS3</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">GSAP</span>
+              <span class="tag">Responsive</span>
+            </div>
+          </div>
+          <div class="project__actions">
+            <a href="https://github.com/umairalishah/hotel-resort" target="_blank" rel="noopener noreferrer" class="btn btn--ghost btn--sm magnetic" aria-label="View Hotel project on GitHub">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub
+            </a>
+            <a href="https://umairalishah.github.io/hotel-resort" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--sm magnetic" aria-label="View Hotel live demo">
+              Live Demo <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Small Projects Grid -->
+    <div class="projects__grid">
+
+      <article class="project-card tilt-card" aria-label="Habit Tracker project">
+        <div class="project-card__inner">
+          <div class="project-card__header">
+            <svg class="project-card__folder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+            <div class="project-card__links">
+              <a href="https://github.com/umairalishah/habit-tracker" target="_blank" rel="noopener noreferrer" aria-label="Habit Tracker GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
+            </div>
+          </div>
+          <h3 class="project-card__title">Habit Tracker App</h3>
+          <p class="project-card__desc">A full-stack habit tracking application with streak counters, analytics dashboard, and weekly progress reports. Data persisted in MongoDB with JWT authentication.</p>
+          <div class="project__tags">
+            <span class="tag">React</span><span class="tag">Node.js</span><span class="tag">MongoDB</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card tilt-card" aria-label="Power BI Dashboards project">
+        <div class="project-card__inner">
+          <div class="project-card__header">
+            <svg class="project-card__folder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+            <div class="project-card__links">
+              <a href="https://github.com/umairalishah/powerbi-dashboards" target="_blank" rel="noopener noreferrer" aria-label="Power BI Dashboards GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
+            </div>
+          </div>
+          <h3 class="project-card__title">Power BI Dashboards</h3>
+          <p class="project-card__desc">Business intelligence dashboards for sales performance, inventory analysis, and KPI monitoring. Built with DAX measures, drill-through reports, and dynamic filtering.</p>
+          <div class="project__tags">
+            <span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">SQL</span><span class="tag">Excel</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card tilt-card" aria-label="Shop Management System project">
+        <div class="project-card__inner">
+          <div class="project-card__header">
+            <svg class="project-card__folder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+            <div class="project-card__links">
+              <a href="https://github.com/umairalishah/shop-management" target="_blank" rel="noopener noreferrer" aria-label="Shop Management GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
+            </div>
+          </div>
+          <h3 class="project-card__title">Shop Management System</h3>
+          <p class="project-card__desc">A complete browser-based shop management system with inventory tracking, sales recording, expense management, and profit/loss reporting. Pure vanilla JS, zero dependencies.</p>
+          <div class="project__tags">
+            <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 5 — SERVICES
+════════════════════════════════════════════════════ -->
+<section class="services section" id="services" aria-label="Services offered by Umair Ali Shah">
+  <div class="container">
+    <div class="section__header">
+      <span class="section__tag">What I offer</span>
+      <h2 class="section__title">Services <span class="text-gradient">&</span> Expertise</h2>
+      <p class="section__subtitle">End-to-end solutions from design to deployment</p>
+    </div>
+
+    <div class="services__grid">
+
+      <article class="service-card" aria-label="Full Stack Web Development service">
+        <div class="service-card__icon-wrap" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <h3 class="service-card__title">Full Stack Web Development</h3>
+        <p class="service-card__desc">End-to-end web applications with React frontends, Node/Express backends, and MongoDB databases. From MVP to production-ready product.</p>
+        <ul class="service-card__features" aria-label="Included features">
+          <li>React SPA & SSR apps</li>
+          <li>RESTful API design</li>
+          <li>Authentication & Security</li>
+          <li>Database architecture</li>
+        </ul>
+      </article>
+
+      <article class="service-card" aria-label="UI/UX Design service">
+        <div class="service-card__icon-wrap" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        </div>
+        <h3 class="service-card__title">UI/UX Design & Prototyping</h3>
+        <p class="service-card__desc">Human-centered interfaces that convert visitors into customers. Figma prototypes, design systems, and pixel-perfect HTML/CSS implementation.</p>
+        <ul class="service-card__features" aria-label="Included features">
+          <li>Figma wireframes & prototypes</li>
+          <li>Design system creation</li>
+          <li>Responsive implementation</li>
+          <li>Micro-interaction design</li>
+        </ul>
+      </article>
+
+      <article class="service-card" aria-label="Power BI Analytics service">
+        <div class="service-card__icon-wrap" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </div>
+        <h3 class="service-card__title">Power BI Dashboards & Analytics</h3>
+        <p class="service-card__desc">Turn raw business data into actionable intelligence. Custom Power BI reports, KPI dashboards, and automated data pipelines for decision-makers.</p>
+        <ul class="service-card__features" aria-label="Included features">
+          <li>DAX measures & calculations</li>
+          <li>Interactive dashboards</li>
+          <li>Drill-through reports</li>
+          <li>Automated data refresh</li>
+        </ul>
+      </article>
+
+      <article class="service-card" aria-label="ERP and Business Software service">
+        <div class="service-card__icon-wrap" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        </div>
+        <h3 class="service-card__title">ERP & Business Software</h3>
+        <p class="service-card__desc">Custom enterprise resource planning systems tailored to your business workflow. Inventory, HR, finance, and reporting modules built for scale.</p>
+        <ul class="service-card__features" aria-label="Included features">
+          <li>Inventory management</li>
+          <li>Role-based access control</li>
+          <li>Financial reporting</li>
+          <li>Multi-user workflows</li>
+        </ul>
+      </article>
+
+      <article class="service-card" aria-label="API Development service">
+        <div class="service-card__icon-wrap" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        </div>
+        <h3 class="service-card__title">Database Design & APIs</h3>
+        <p class="service-card__desc">Well-structured REST APIs with proper authentication, rate limiting, and documentation. MongoDB schema design and SQL query optimization.</p>
+        <ul class="service-card__features" aria-label="Included features">
+          <li>REST API architecture</li>
+          <li>JWT & OAuth 2.0</li>
+          <li>MongoDB & MySQL design</li>
+          <li>API documentation</li>
+        </ul>
+      </article>
+
+      <article class="service-card" aria-label="WordPress Development service">
+        <div class="service-card__icon-wrap" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <h3 class="service-card__title">WordPress Websites</h3>
+        <p class="service-card__desc">Professional WordPress sites for businesses and freelancers. Custom theme development, plugin integration, WooCommerce, and ongoing maintenance.</p>
+        <ul class="service-card__features" aria-label="Included features">
+          <li>Custom theme development</li>
+          <li>WooCommerce stores</li>
+          <li>SEO optimization</li>
+          <li>Performance tuning</li>
+        </ul>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 6 — JOURNEY / TIMELINE
+════════════════════════════════════════════════════ -->
+<section class="journey section" id="journey" aria-label="Career and learning journey">
+  <div class="container">
+    <div class="section__header">
+      <span class="section__tag">My story</span>
+      <h2 class="section__title">The <span class="text-gradient">Journey</span></h2>
+      <p class="section__subtitle">Every year a new skill, every project a new lesson</p>
+    </div>
+
+    <div class="timeline" role="list">
+
+      <div class="timeline__item" role="listitem">
+        <div class="timeline__node" aria-hidden="true">
+          <div class="timeline__dot"></div>
+          <div class="timeline__line"></div>
+        </div>
+        <div class="timeline__card">
+          <span class="timeline__year">2021</span>
+          <h3 class="timeline__title">The Beginning</h3>
+          <p class="timeline__desc">Started BS Computer Science at university in Swabi. Discovered programming through HTML & CSS — built my first webpage and never looked back. Spent every evening self-teaching JavaScript fundamentals through online resources.</p>
+          <div class="project__tags">
+            <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline__item timeline__item--right" role="listitem">
+        <div class="timeline__node" aria-hidden="true">
+          <div class="timeline__dot"></div>
+          <div class="timeline__line"></div>
+        </div>
+        <div class="timeline__card">
+          <span class="timeline__year">2022</span>
+          <h3 class="timeline__title">Going Full Stack</h3>
+          <p class="timeline__desc">Dove deep into the MERN stack. Learned React, built component-based UIs, connected them to Node/Express APIs, and stored data in MongoDB. Completed first real-world projects for local clients — a portfolio site and a service business landing page.</p>
+          <div class="project__tags">
+            <span class="tag">React</span><span class="tag">Node.js</span><span class="tag">MongoDB</span><span class="tag">Express</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline__item" role="listitem">
+        <div class="timeline__node" aria-hidden="true">
+          <div class="timeline__dot"></div>
+          <div class="timeline__line"></div>
+        </div>
+        <div class="timeline__card">
+          <span class="timeline__year">2023</span>
+          <h3 class="timeline__title">Data & Design Pivot</h3>
+          <p class="timeline__desc">Expanded into data analytics — mastered Power BI, DAX, and SQL. Started taking WordPress freelance projects, delivering 3+ websites to small businesses. Discovered UI/UX design through Figma and started applying design thinking to every project.</p>
+          <div class="project__tags">
+            <span class="tag">Power BI</span><span class="tag">SQL</span><span class="tag">Figma</span><span class="tag">WordPress</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline__item timeline__item--right" role="listitem">
+        <div class="timeline__node" aria-hidden="true">
+          <div class="timeline__dot"></div>
+          <div class="timeline__line"></div>
+        </div>
+        <div class="timeline__card">
+          <span class="timeline__year">2024</span>
+          <h3 class="timeline__title">Watan Tobacco ERP — Shipped</h3>
+          <p class="timeline__desc">Designed and developed a complete production ERP system for a tobacco distribution company. This was the project that proved I could ship enterprise software: role-based access, real-time inventory, financial modules, and integrated Power BI reporting. Full stack, solo.</p>
+          <div class="project__tags">
+            <span class="tag">MERN Stack</span><span class="tag">JWT Auth</span><span class="tag">Power BI</span><span class="tag">ERP</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline__item" role="listitem">
+        <div class="timeline__node" aria-hidden="true">
+          <div class="timeline__dot"></div>
+          <div class="timeline__line"></div>
+        </div>
+        <div class="timeline__card">
+          <span class="timeline__year">2025</span>
+          <h3 class="timeline__title">Leveling Up for the World</h3>
+          <p class="timeline__desc">Sharpening MERN architecture skills, learning Azure AI services, and exploring AWS cloud deployment. Built this portfolio as a statement: international-quality work, ready for remote teams and global clients. The mission is clear — ship products that matter.</p>
+          <div class="project__tags">
+            <span class="tag">AWS</span><span class="tag">Azure AI</span><span class="tag">GSAP</span><span class="tag">Three.js</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline__item timeline__item--right timeline__item--now" role="listitem">
+        <div class="timeline__node" aria-hidden="true">
+          <div class="timeline__dot timeline__dot--pulse"></div>
+        </div>
+        <div class="timeline__card timeline__card--now">
+          <span class="timeline__year timeline__year--now">NOW</span>
+          <h3 class="timeline__title">Open & Available</h3>
+          <p class="timeline__desc">Ready for remote work, freelance contracts, international internships, and full-time opportunities. Looking for teams that move fast, build great products, and care about quality.</p>
+          <a href="#contact" class="btn btn--primary btn--sm magnetic">Let's Work Together →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 7 — CONTACT
+════════════════════════════════════════════════════ -->
+<section class="contact section" id="contact" aria-label="Contact Umair Ali Shah">
+  <div class="container">
+    <div class="section__header">
+      <span class="section__tag">Get in touch</span>
+      <h2 class="section__title">Let's Build <span class="text-gradient">Together</span></h2>
+      <p class="section__subtitle">Remote-first. Client-focused. Ready to ship.</p>
+    </div>
+
+    <div class="contact__grid">
+
+      <!-- LEFT: Info -->
+      <div class="contact__info">
+        <p class="contact__intro">
+          Whether you need a full-stack application, a data dashboard, or a beautiful landing page —
+          I'm here to make it happen. I respond within 24 hours.
+        </p>
+
+        <div class="contact__cards">
+          <a href="mailto:umairalishah.dev@gmail.com" class="contact__card" aria-label="Send email to Umair">
+            <div class="contact__card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div class="contact__card-text">
+              <span class="contact__card-label">Email</span>
+              <span class="contact__card-value">umairalishah096@gmail.com</span>
+            </div>
+          </a>
+
+          <a href="https://wa.me/923001234567" target="_blank" rel="noopener noreferrer" class="contact__card" aria-label="Contact Umair on WhatsApp">
+            <div class="contact__card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+            </div>
+            <div class="contact__card-text">
+              <span class="contact__card-label">WhatsApp</span>
+              <span class="contact__card-value">+92 344 1193348</span>
+            </div>
+          </a>
+
+          <a href="https://github.com/umairalishah096-tech/umairalishah096-tech" target="_blank" rel="noopener noreferrer" class="contact__card" aria-label="View Umair's GitHub">
+            <div class="contact__card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            </div>
+            <div class="contact__card-text">
+              <span class="contact__card-label">GitHub</span>
+              <span class="contact__card-value">https://github.com/umairalishah096-tech</span>
+            </div>
+          </a>
+
+          <div class="contact__card contact__card--location" aria-label="Location">
+            <div class="contact__card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="contact__card-text">
+              <span class="contact__card-label">Location</span>
+              <span class="contact__card-value">Swabi, Pakistan — Remote Worldwide</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Social Links -->
+        <div class="contact__socials" aria-label="Social media links">
+          <a href="https://github.com/umairalishah096-tech/umairalishah096-tech" target="_blank" rel="noopener noreferrer" class="contact__social magnetic" aria-label="GitHub">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/umair-ali-shah-b10a74240/" target="_blank" rel="noopener noreferrer" class="contact__social magnetic" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="mailto:umairalishah096@gmail.com" class="contact__social magnetic" aria-label="Email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+          <a href="https://wa.me/923441193348" target="_blank" rel="noopener noreferrer" class="contact__social magnetic" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- RIGHT: Contact Form -->
+      <div class="contact__form-wrap">
+        <form class="contact__form" id="contactForm" novalidate aria-label="Contact form">
+          <div class="form__group">
+            <label class="form__label" for="contactName">Your Name</label>
+            <input class="form__input" type="text" id="contactName" name="name" placeholder="John Smith" required autocomplete="name" aria-required="true" />
+            <span class="form__error" id="nameError" role="alert" aria-live="polite"></span>
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="contactEmail">Email Address</label>
+            <input class="form__input" type="email" id="contactEmail" name="email" placeholder="john@company.com" required autocomplete="email" aria-required="true" />
+            <span class="form__error" id="emailError" role="alert" aria-live="polite"></span>
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="contactBudget">Project Budget</label>
+            <select class="form__input form__select" id="contactBudget" name="budget" aria-label="Select project budget range">
+              <option value="" disabled selected>Select budget range</option>
+              <option value="under-500">Under $500</option>
+              <option value="500-2000">$500 – $2,000</option>
+              <option value="2000-5000">$2,000 – $5,000</option>
+              <option value="5000-plus">$5,000+</option>
+              <option value="discuss">Let's discuss</option>
+            </select>
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="contactMessage">Message</label>
+            <textarea class="form__input form__textarea" id="contactMessage" name="message" placeholder="Tell me about your project, timeline, and goals..." required rows="5" aria-required="true"></textarea>
+            <span class="form__error" id="messageError" role="alert" aria-live="polite"></span>
+          </div>
+          <button type="submit" class="btn btn--primary btn--full magnetic" id="submitBtn" aria-label="Send message">
+            <span class="btn__text">Send Message</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            <span class="btn__loader" aria-hidden="true"></span>
+          </button>
+          <div class="form__success" id="formSuccess" role="alert" aria-live="assertive" hidden>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Message sent! I'll get back to you within 24 hours.</span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main><!-- /main -->
+
+<!-- ═══════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════════ -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <a href="#home" class="footer__logo" aria-label="Back to top">
+          <span>Umair<span class="text-gradient">.</span></span>
+        </a>
+        <p class="footer__tagline">Building the web, one commit at a time.</p>
+      </div>
+      <nav class="footer__nav" aria-label="Footer navigation">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#services">Services</a>
+        <a href="#journey">Journey</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="footer__copy">
+        <p>© <span id="footerYear">2025</span> Umair Ali Shah. Designed & built with ♥ in Pakistan.</p>
+        <p class="footer__status">
+          <span class="footer__status-dot" aria-hidden="true"></span>
+          All systems operational
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════
+     PROJECT MODAL
+════════════════════════════════════════════════════ -->
+<div class="modal" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+  <div class="modal__backdrop" id="modalBackdrop"></div>
+  <div class="modal__container">
+    <button class="modal__close" id="modalClose" aria-label="Close modal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="modal__content" id="modalContent">
+      <!-- Dynamically injected -->
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     EASTER EGG — Konami Code
+════════════════════════════════════════════════════ -->
+<div class="easter-egg" id="easterEgg" aria-live="polite" aria-atomic="true" hidden>
+  <div class="easter-egg__inner">
+    <span class="easter-egg__emoji">🎉</span>
+    <p>You found the secret! Konami code activated.</p>
+    <p class="easter-egg__sub">Thanks for being curious — just like a good developer should be.</p>
+    <span class="easter-egg__emoji">🚀</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     SCRIPTS
+════════════════════════════════════════════════════ -->
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js" defer></script>
+
+<!-- Lenis Smooth Scroll -->
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js" defer></script>
+
+<!-- Three.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+
+<!-- Vanilla Tilt -->
+<script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js" defer></script>
+
+<!-- EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
+
+<!-- Main Script -->
+<script src="script.js" defer></script>
+
+</body>
+</html>
