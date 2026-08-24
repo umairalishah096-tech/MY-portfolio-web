@@ -1512,6 +1512,13 @@ input, textarea, select {
   display: flex;
   gap: var(--space-md);
   flex-wrap: wrap;
+  position: relative;
+  z-index: 10;
+}
+
+.project__actions a, .project__actions button {
+  position: relative;
+  z-index: 10;
 }
 
 /* Small Project Cards Grid */
@@ -2344,4 +2351,44 @@ a.contact__card:hover {
   .loader, .cursor__dot, .cursor__ring,
   .scroll-progress, .nav, .hero__canvas { display: none; }
   body { background: white; color: black; }
+}
+
+/* Fix Vanilla Tilt glare blocking clicks */
+.js-tilt-glare, .js-tilt-glare-inner { pointer-events: none !important; }
+
+
+/* EMERGENCY FIX FOR BUTTONS */
+.project-featured__content { position: relative; z-index: 50; pointer-events: auto; }
+.project__actions { position: relative; z-index: 9999 !important; pointer-events: auto; }
+.project__actions a, .project__actions button { pointer-events: auto !important; position: relative; z-index: 9999 !important; }
+.tilt-card { transform-style: flat !important; }
+
+
+/* EMERGENCY FIX FOR BUTTONS */
+.project-featured__content { position: relative; z-index: 50; pointer-events: auto; }
+.project__actions { position: relative; z-index: 9999 !important; pointer-events: auto; }
+.project__actions a, .project__actions button { pointer-events: auto !important; position: relative; z-index: 9999 !important; }
+.js-tilt-glare, .js-tilt-glare-inner { pointer-events: none !important; }
+
+
+/* -- PROJECT CARD ACTIONS (GitHub + Live Demo buttons) ------- */
+.project-card__actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+  flex-wrap: wrap;
+}
+.project-card__actions .btn {
+  flex: 1;
+  min-width: 0;
+  justify-content: center;
+}
+.project-card__featured-badge {
+  display: inline-block;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--neon-green);
+  margin-bottom: 0.5rem;
 }

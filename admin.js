@@ -1,17 +1,17 @@
-﻿/* ================================================================
-   ADMIN PANEL — admin.js
+/* ================================================================
+   ADMIN PANEL â€” admin.js
    Portfolio CMS Logic: Auth + CRUD for Projects, Skills,
-   Services, Journey, About — all stored in localStorage
+   Services, Journey, About â€” all stored in localStorage
 ================================================================ */
 
 'use strict';
 
-/* ── CONSTANTS ───────────────────────────────── */
+/* â”€â”€ CONSTANTS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 const ADMIN_USER = 'admin';
 const ADMIN_PASS = 'admin123';
 const SESSION_KEY = 'portfolio_admin_session';
 
-/* ── STORAGE KEYS ────────────────────────────── */
+/* â”€â”€ STORAGE KEYS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 const KEYS = {
   projects: 'portfolio_projects',
   skills:   'portfolio_skills',
@@ -20,11 +20,11 @@ const KEYS = {
   about:    'portfolio_about',
 };
 
-/* ── DEFAULT DATA (mirrors existing portfolio) ─ */
+/* â”€â”€ DEFAULT DATA (mirrors existing portfolio) â”€ */
 const DEFAULTS = {
   projects: [
     { id: uid(), title: 'Watan Tobacco ERP', label: 'Full Stack ERP System', desc: 'A production-grade Enterprise Resource Planning system built for a tobacco distribution company in Pakistan. Features real-time inventory management, sales tracking, supplier relations, financial reporting, and role-based access control.', github: 'https://github.com/umairalishah/watan-tobacco-erp', demo: '', tags: ['React', 'Node.js', 'Express', 'MongoDB', 'JWT Auth', 'Power BI'], featured: true, status: 'completed' },
-    { id: uid(), title: 'Luxury Hotel & Resort Landing Page', label: 'Frontend Development', desc: 'A cinematic, conversion-focused landing page for a luxury hotel brand. Built with custom CSS animations, parallax scrolling, and a fully responsive layout.', github: 'https://github.com/umairalishah/hotel-resort', demo: 'https://umairalishah.github.io/hotel-resort', tags: ['HTML5', 'CSS3', 'JavaScript', 'GSAP', 'Responsive'], featured: true, status: 'completed' },
+    { id: uid(), title: 'Luxury Hotel & Resort Landing Page', label: 'Frontend Development', desc: 'A cinematic, conversion-focused landing page for a luxury hotel brand. Built with custom CSS animations, parallax scrolling, and a fully responsive layout.', github: 'https://github.com/umairalishah/hotel-resort', demo: 'https://hotel-resort-project-nu.vercel.app/', tags: ['HTML5', 'CSS3', 'JavaScript', 'GSAP', 'Responsive'], featured: true, status: 'completed' },
     { id: uid(), title: 'Habit Tracker App', label: 'Full Stack', desc: 'A full-stack habit tracking application with streak counters, analytics dashboard, and weekly progress reports. Data persisted in MongoDB with JWT authentication.', github: 'https://github.com/umairalishah/habit-tracker', demo: '', tags: ['React', 'Node.js', 'MongoDB'], featured: false, status: 'completed' },
     { id: uid(), title: 'Power BI Dashboards', label: 'Data Analytics', desc: 'Business intelligence dashboards for sales performance, inventory analysis, and KPI monitoring. Built with DAX measures, drill-through reports, and dynamic filtering.', github: 'https://github.com/umairalishah/powerbi-dashboards', demo: '', tags: ['Power BI', 'DAX', 'SQL', 'Excel'], featured: false, status: 'completed' },
     { id: uid(), title: 'Shop Management System', label: 'Vanilla JS', desc: 'A complete browser-based shop management system with inventory tracking, sales recording, expense management, and profit/loss reporting. Pure vanilla JS, zero dependencies.', github: 'https://github.com/umairalishah/shop-management', demo: '', tags: ['HTML', 'CSS', 'JavaScript'], featured: false, status: 'completed' },
@@ -54,17 +54,17 @@ const DEFAULTS = {
     { id: uid(), title: 'WordPress Websites', desc: 'Professional WordPress sites for businesses and freelancers. Custom theme development, plugin integration, WooCommerce, and ongoing maintenance.', features: ['Custom theme development', 'WooCommerce stores', 'SEO optimization', 'Performance tuning'] },
   ],
   journey: [
-    { id: uid(), year: '2021', title: 'The Beginning', desc: 'Started BS Computer Science at university in Swabi. Discovered programming through HTML & CSS — built my first webpage and never looked back. Spent every evening self-teaching JavaScript fundamentals through online resources.', tags: ['HTML', 'CSS', 'JavaScript'], side: 'left' },
+    { id: uid(), year: '2021', title: 'The Beginning', desc: 'Started BS Computer Science at university in Swabi. Discovered programming through HTML & CSS â€” built my first webpage and never looked back. Spent every evening self-teaching JavaScript fundamentals through online resources.', tags: ['HTML', 'CSS', 'JavaScript'], side: 'left' },
     { id: uid(), year: '2022', title: 'Going Full Stack', desc: 'Dove deep into the MERN stack. Learned React, built component-based UIs, connected them to Node/Express APIs, and stored data in MongoDB. Completed first real-world projects for local clients.', tags: ['React', 'Node.js', 'MongoDB', 'Express'], side: 'right' },
-    { id: uid(), year: '2023', title: 'Data & Design Pivot', desc: 'Expanded into data analytics — mastered Power BI, DAX, and SQL. Started taking WordPress freelance projects, delivering 3+ websites to small businesses. Discovered UI/UX design through Figma.', tags: ['Power BI', 'SQL', 'Figma', 'WordPress'], side: 'left' },
-    { id: uid(), year: '2024', title: 'Watan Tobacco ERP — Shipped', desc: 'Designed and developed a complete production ERP system for a tobacco distribution company. This was the project that proved I could ship enterprise software: role-based access, real-time inventory, financial modules, and integrated Power BI reporting.', tags: ['MERN Stack', 'JWT Auth', 'Power BI', 'ERP'], side: 'right' },
+    { id: uid(), year: '2023', title: 'Data & Design Pivot', desc: 'Expanded into data analytics â€” mastered Power BI, DAX, and SQL. Started taking WordPress freelance projects, delivering 3+ websites to small businesses. Discovered UI/UX design through Figma.', tags: ['Power BI', 'SQL', 'Figma', 'WordPress'], side: 'left' },
+    { id: uid(), year: '2024', title: 'Watan Tobacco ERP â€” Shipped', desc: 'Designed and developed a complete production ERP system for a tobacco distribution company. This was the project that proved I could ship enterprise software: role-based access, real-time inventory, financial modules, and integrated Power BI reporting.', tags: ['MERN Stack', 'JWT Auth', 'Power BI', 'ERP'], side: 'right' },
     { id: uid(), year: '2025', title: 'Leveling Up for the World', desc: 'Sharpening MERN architecture skills, learning Azure AI services, and exploring AWS cloud deployment. Built this portfolio as a statement: international-quality work, ready for remote teams and global clients.', tags: ['AWS', 'Azure AI', 'GSAP', 'Three.js'], side: 'left' },
     { id: uid(), year: 'NOW', title: 'Open & Available', desc: 'Ready for remote work, freelance contracts, international internships, and full-time opportunities. Looking for teams that move fast, build great products, and care about quality.', tags: [], side: 'right' },
   ],
   about: {
     name: 'Umair Ali Shah', tagline: 'Full Stack MERN Developer',
-    bio1: "I'm Umair Ali Shah — a BS Computer Science graduate from Swabi, Pakistan, driven by the intersection of clean code, thoughtful design, and business impact. I specialize in the MERN stack, building full-stack applications that don't just work — they convert, scale, and impress.",
-    bio2: "Beyond development, I work with data. As a Power BI Analyst, I transform raw business data into visual narratives that help organizations make smarter decisions. I believe a great developer isn't just technical — they understand the business problem.",
+    bio1: "I'm Umair Ali Shah â€” a BS Computer Science graduate from Swabi, Pakistan, driven by the intersection of clean code, thoughtful design, and business impact. I specialize in the MERN stack, building full-stack applications that don't just work â€” they convert, scale, and impress.",
+    bio2: "Beyond development, I work with data. As a Power BI Analyst, I transform raw business data into visual narratives that help organizations make smarter decisions. I believe a great developer isn't just technical â€” they understand the business problem.",
     location: 'Swabi, Khyber Pakhtunkhwa, Pakistan',
     email: 'umairalishah096@gmail.com',
     whatsapp: '+92 344 1193348',
@@ -75,7 +75,7 @@ const DEFAULTS = {
   },
 };
 
-/* ── UTILITIES ───────────────────────── */
+/* â”€â”€ UTILITIES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function uid() { return '_' + Math.random().toString(36).slice(2, 11); }
 
 function getData(key) {
@@ -104,9 +104,9 @@ function escHTML(str) {
   return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
-/* ════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    INIT
-════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 document.addEventListener('DOMContentLoaded', () => {
   // Seed defaults if first visit
   Object.keys(DEFAULTS).forEach(k => initData(KEYS[k], DEFAULTS[k]));
@@ -124,9 +124,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initAbout();
 });
 
-/* ════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    AUTH
-════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 function checkSession() {
   if (sessionStorage.getItem(SESSION_KEY) === '1') showAdmin();
 }
@@ -169,11 +169,23 @@ function initLogout() {
     document.getElementById('loginUser').value = '';
     document.getElementById('loginPass').value = '';
   });
+
+  // Reset to defaults button
+  const resetBtn = document.getElementById('resetDataBtn');
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      if (confirm('Reset ALL data to defaults? This will clear all your changes.')) {
+        Object.values(KEYS).forEach(k => localStorage.removeItem(k));
+        showToast('Data reset! Reloading...', 'success');
+        setTimeout(() => location.reload(), 1200);
+      }
+    });
+  }
 }
 
-/* ════════════════════════════════════════
+/* â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• 
    NAV / SECTIONS
-════════════════════════════════════════ */
+â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â•  */
 function initNav() {
   const links = document.querySelectorAll('.sidebar__link');
   links.forEach(link => {
@@ -196,9 +208,9 @@ function initSidebarToggle() {
   btn.addEventListener('click', () => sb.classList.toggle('open'));
 }
 
-/* ════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    MODAL INFRASTRUCTURE
-════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 function initModals() {
   // Close buttons with data-close attr
   document.querySelectorAll('[data-close]').forEach(btn => {
@@ -218,9 +230,9 @@ function initModals() {
   });
 }
 
-/* ════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    RENDER ALL (after login / edits)
-════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 function renderAll() {
   renderProjects();
   renderSkills();
@@ -229,9 +241,9 @@ function renderAll() {
   loadAboutForm();
 }
 
-/* ════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    PROJECTS CRUD
-════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 function initProjects() {
   document.getElementById('addProjectBtn').addEventListener('click', () => {
     openProjectModal();
@@ -315,9 +327,9 @@ function saveProject(e) {
   showToast(id ? 'Project updated!' : 'Project added!');
 }
 
-/* ════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    SKILLS CRUD
-════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 function initSkills() {
   document.getElementById('addSkillBtn').addEventListener('click', () => openSkillModal());
   document.getElementById('skillForm').addEventListener('submit', saveSkill);
@@ -391,9 +403,9 @@ function saveSkill(e) {
   showToast(id ? 'Skill updated!' : 'Skill added!');
 }
 
-/* ════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    SERVICES CRUD
-════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 function initServices() {
   document.getElementById('addServiceBtn').addEventListener('click', () => openServiceModal());
   document.getElementById('serviceForm').addEventListener('submit', saveService);
@@ -410,7 +422,7 @@ function renderServices() {
     <div class="item-card" data-id="${escHTML(s.id)}">
       <div class="item-card__info">
         <div class="item-card__title">${escHTML(s.title)}</div>
-        <div class="item-card__meta">${escHTML((s.features || []).slice(0,2).join(' · '))}</div>
+        <div class="item-card__meta">${escHTML((s.features || []).slice(0,2).join(' Â· '))}</div>
       </div>
       <div class="item-card__actions">
         <button class="btn-icon" onclick="openServiceModal('${escHTML(s.id)}')">
@@ -462,9 +474,9 @@ function saveService(e) {
   showToast(id ? 'Service updated!' : 'Service added!');
 }
 
-/* ════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    JOURNEY CRUD
-════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 function initJourney() {
   document.getElementById('addJourneyBtn').addEventListener('click', () => openJourneyModal());
   document.getElementById('journeyForm').addEventListener('submit', saveJourney);
@@ -480,7 +492,7 @@ function renderJourney() {
   list.innerHTML = data.map(j => `
     <div class="item-card" data-id="${escHTML(j.id)}">
       <div class="item-card__info">
-        <div class="item-card__title">${escHTML(j.year)} — ${escHTML(j.title)}</div>
+        <div class="item-card__title">${escHTML(j.year)} â€” ${escHTML(j.title)}</div>
         <div class="item-card__meta">${escHTML(j.desc.substring(0,80))}${j.desc.length > 80 ? '...' : ''}</div>
       </div>
       <span class="item-card__badge badge--${escHTML(j.side === 'right' ? 'backend' : 'frontend')}">${escHTML(j.side)}</span>
@@ -538,9 +550,9 @@ function saveJourney(e) {
   showToast(id ? 'Event updated!' : 'Event added!');
 }
 
-/* ════════════════════════════════════════
-   ABOUT (single object — no list)
-════════════════════════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   ABOUT (single object â€” no list)
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 function initAbout() {
   document.getElementById('aboutForm').addEventListener('submit', saveAbout);
 }
@@ -588,9 +600,9 @@ function saveAbout(e) {
   showToast('About info saved!');
 }
 
-/* ════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    DELETE (shared)
-════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 let _pendingDelete = null;
 
 function deleteItem(type, id, label) {
@@ -600,18 +612,20 @@ function deleteItem(type, id, label) {
   openModal('deleteModal');
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('confirmDeleteBtn').addEventListener('click', () => {
-    if (!_pendingDelete) return;
-    const { type, id } = _pendingDelete;
-    let data = getData(KEYS[type]) || [];
-    data = data.filter(x => x.id !== id);
-    saveData(KEYS[type], data);
-    closeModal('deleteModal');
-    _pendingDelete = null;
+  const confirmBtn = document.getElementById('confirmDeleteBtn');
+  if(confirmBtn) {
+    confirmBtn.addEventListener('click', () => {
+      if (!_pendingDelete) return;
+      const { type, id } = _pendingDelete;
+      let data = getData(KEYS[type]) || [];
+      data = data.filter(x => x.id !== id);
+      saveData(KEYS[type], data);
+      closeModal('deleteModal');
+      _pendingDelete = null;
 
-    const renders = { projects: renderProjects, skills: renderSkills, services: renderServices, journey: renderJourney };
-    if (renders[type]) renders[type]();
-    showToast('Item deleted.', 'error');
-  });
-});
+      const renders = { projects: renderProjects, skills: renderSkills, services: renderServices, journey: renderJourney };
+      if (renders[type]) renders[type]();
+      showToast('Item deleted.', 'error');
+    });
+  }
+
